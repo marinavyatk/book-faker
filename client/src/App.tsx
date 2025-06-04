@@ -37,7 +37,8 @@ export default function App() {
 
     const fetchBooks = async (reset = false) => {
         setLoading(true);
-        const res = await axios.get('http://localhost:4000/api/books', {
+        const baseUrl = import.meta.env.VITE_BASE_URL
+        const res = await axios.get(`${baseUrl}/api/books`, {
             params: {locale, seed, likes, reviews, page: reset ? 1 : page, booksPerPage: reset ? 20 : 10}
         });
         const newBooks = res.data.books;
