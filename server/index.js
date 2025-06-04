@@ -25,6 +25,7 @@ app.get('/api/books', (req, res) => {
         likes ,
         reviews ,
         booksPerPage,
+        booksBeforeCurrentPage
     } = req.query;
     const seedNumber = Number(String(seed)+ page);
     const random = () => seedrandom(seedNumber);
@@ -50,9 +51,9 @@ app.get('/api/books', (req, res) => {
     };
 
 
-    const getBooks = (locale) => {
+    const getBooks = (locale, booksBeforeCurrentPage) => {
         return Array.from({length: booksPerPage}, (_, i) => {
-            const idx = (page - 1) * booksPerPage + i + 1;
+            const idx = Number(booksBeforeCurrentPage) + i + 1;
 
             const isEng = locale === 'en'
             const generateTitleAlternative = () => {
@@ -75,7 +76,7 @@ app.get('/api/books', (req, res) => {
         });
     };
 
-    res.json({books: getBooks(locale)});
+    res.json({books: getBooks(locale, booksBeforeCurrentPage)});
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

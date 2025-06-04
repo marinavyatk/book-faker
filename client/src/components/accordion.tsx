@@ -15,22 +15,22 @@ export const AccordionApp = ({book}: Props) => {
             id={book.isbn}
             onClick={() => setOpen(true)}
         >
-                <Box sx={{
-                    display: 'grid',
-                    gridTemplateColumns: { xs: '1fr', md: gridTemplate },
-                    width: '100%'
-                }}>
-                    <Typography component="span">{book.index}</Typography>
-                    <Typography component="span">{book.isbn}</Typography>
-                    <Typography component="span" sx={{fontWeight: 'bold'}}>{book.title}</Typography>
-                    <Typography component="span">{book.author}</Typography>
-                    <Typography component="span">{book.publisher}</Typography>
-                </Box>
+            <Box sx={{
+                display: 'grid',
+                gridTemplateColumns: {xs: '1fr', md: gridTemplate},
+                width: '100%'
+            }}>
+                <Typography component="span">{book.index}</Typography>
+                <Typography component="span">{book.isbn}</Typography>
+                <Typography component="span" sx={{fontWeight: 'bold'}}>{book.title}</Typography>
+                <Typography component="span">{book.author}</Typography>
+                <Typography component="span">{book.publisher}</Typography>
+            </Box>
         </AccordionSummary>
         <AccordionDetails>
             <Box sx={{display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center'}}>
                 <Box>
-                    <Box sx={{minWidth: 100}} position='relative'>
+                    <Box sx={{minWidth: 100, width: '200px'}} position='relative'>
                         <img
                             src={open ? book.coverUrl : ''}
                             alt={`Cover of ${book.title}`}

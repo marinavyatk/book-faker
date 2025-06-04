@@ -39,11 +39,11 @@ export default function App() {
         setLoading(true);
         const baseUrl = import.meta.env.VITE_BASE_URL
         const res = await axios.get(`${baseUrl}/api/books`, {
-            params: {locale, seed, likes, reviews, page: reset ? 1 : page, booksPerPage: reset ? 20 : 10}
+            params: {locale, seed, likes, reviews, page: reset ? 1 : page, booksPerPage: reset ? 20 : 10, booksBeforeCurrentPage: reset ?0:books.length,}
         });
         const newBooks = res.data.books;
         setBooks(prev => reset ? newBooks : [...prev, ...newBooks]);
-        if (reset) setPage(2); else setPage(prev => prev + 1);
+        setPage(prev => prev + 1);
         setLoading(false);
     };
 
